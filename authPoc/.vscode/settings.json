@@ -1,0 +1,4 @@
+{
+    "appService.defaultWebAppToDeploy": "/subscriptions/f0d9b6b2-acaf-4b10-9827-b30f4793ad93/resourceGroups/afnameAuthPoc/providers/Microsoft.Web/sites/uzaAuthPoc",
+    "appService.deploySubpath": "bin\\Publish"
+}
