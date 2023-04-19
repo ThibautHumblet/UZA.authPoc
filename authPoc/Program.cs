@@ -40,9 +40,8 @@ app.MapPost("/login", [AllowAnonymous] (User user) =>
 {
     var users = new List<User>
     {
-        new User { Id = 1, Email = "steven.vandepoel@uza.be", Password = "test123", Name = "Steven Van de Poel" },
-        new User { Id = 2, Email = "thibaut.humblet@uza.be", Password = "test123", Name = "Thibaut Humblet" },
-        new User { Id = 3, Email = "els.wittesaele@uza.be", Password = "test123", Name = "Els Wittesaele" },
+        new User { Id = 1, Email = "thibaut.humblet@uza.be", Password = "test123", Name = "Thibaut Humblet" },
+        new User { Id = 2, Email = "els.wittesaele@uza.be", Password = "test123", Name = "Els Wittesaele" },
     };
 
     if (users.Any(u => u.Email == user.Email && u.Password == user.Password))
