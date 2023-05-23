@@ -46,6 +46,8 @@ app.MapPost("/login", [AllowAnonymous] (User user) =>
 
 	if (users.Any(u => u.Email == user.Email && u.Password == user.Password))
 	{
+		var login = users.Where(x => x.Email.Equals(user.Email)).Select(x => x.Login).FirstOrDefault();
+		login ??= "Unknown";
 		var issuer = builder.Configuration["Jwt:Issuer"];
 		var audience = builder.Configuration["Jwt:Audience"];
 		string? key = builder.Configuration.GetValue<string>("Jwt:Key");
@@ -58,7 +60,7 @@ app.MapPost("/login", [AllowAnonymous] (User user) =>
 				new Claim(JwtRegisteredClaimNames.Sub, user.Email),
 				new Claim(JwtRegisteredClaimNames.Email, user.Email),
 				new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
-				new Claim(JwtRegisteredClaimNames.UniqueName, user.Login)
+				new Claim(JwtRegisteredClaimNames.UniqueName, login)
 			}),
 			Expires = DateTime.UtcNow.AddMinutes(60),
 			Issuer = issuer,
